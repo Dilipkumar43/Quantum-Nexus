@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Nexus - Futuristic E-commerce</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for glowing effects and animations */
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.7), 0 0 10px rgba(59, 130, 246, 0.5); }
+            50% { box-shadow: 0 0 15px rgba(59, 130, 246, 1), 0 0 25px rgba(59, 130, 246, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(59, 130, 246, 0.7), 0 0 10px rgba(59, 130, 246, 0.5); }
+        }
+
+        @keyframes text-glow {
+            0% { text-shadow: 0 0 5px rgba(125, 211, 252, 0.7); }
+            50% { text-shadow: 0 0 15px rgba(125, 211, 252, 1), 0 0 25px rgba(125, 211, 252, 0.8); }
+            100% { text-shadow: 0 0 5px rgba(125, 211, 252, 0.7), 0 0 10px rgba(125, 211, 252, 0.5); }
+        }
+
+        @keyframes divider-scan {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .glowing-button {
+            animation: glow 1.5s infinite alternate;
+            transition: all 0.3s ease-in-out;
+        }
+        .glowing-button:hover {
+            animation: none; /* Stop animation on hover for a solid glow */
+            box-shadow: 0 0 20px rgba(59, 130, 246, 1), 0 0 30px rgba(59, 130, 246, 0.8);
+        }
+
+        .hologram-text {
+            animation: text-glow 2s infinite alternate;
+        }
+
+        .animated-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            background-size: 200% 100%;
+            animation: divider-scan 3s linear infinite;
+        }
+
+        .hologram-hero {
+            background: radial-gradient(circle at center, rgba(23, 37, 84, 0.4) 0%, rgba(17, 24, 39, 0.8) 70%, rgba(0,0,0,0.9) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hologram-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(59, 130, 246, 0.1) 25%, rgba(59, 130, 246, 0.1) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.1) 75%, rgba(59, 130, 246, 0.1) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(59, 130, 246, 0.1) 25%, rgba(59, 130, 246, 0.1) 26%, transparent 27%, transparent 74%, rgba(59, 130, 246, 0.1) 75%, rgba(59, 130, 246, 0.1) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            opacity: 0.2;
+            animation: grid-pulse 10s infinite linear;
+        }
+
+        @keyframes grid-pulse {
+            0% { opacity: 0.1; }
+            50% { opacity: 0.3; }
+            100% { opacity: 0.1; }
+        }
+
+        .advertisement-modal {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100 font-sans antialiased">
+    <!-- Navigation Bar -->
+    <nav class="bg-gray-900 bg-opacity-80 backdrop-filter backdrop-blur-lg fixed w-full z-40 top-0 py-4 shadow-lg">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold text-blue-400 hologram-text">Quantum Nexus</a>
+
+            <!-- Navigation Links -->
+            <div class="hidden md:flex space-x-8">
+                <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Home</a>
+                <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">About</a>
+                <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Contact</a>
+                <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Search</a>
+                <a href="#" class="text-gray-300 hover:text-blue-400 transition-colors duration-300">Orders</a>
+            </div>
+
+            <!-- Mobile Menu Button (Hamburger) -->
+            <div class="md:hidden">
+                <button id="mobileMenuBtn" class="text-gray-300 hover:text-blue-400 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (hidden by default) -->
+        <div id="mobileMenu" class="md:hidden hidden bg-gray-800 bg-opacity-90 py-4 mt-4">
+            <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Home</a>
+            <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">About</a>
+            <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Contact</a>
+            <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Search</a>
+            <a href="#" class="block px-4 py-2 text-gray-200 hover:bg-gray-700">Orders</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hologram-hero relative flex items-center justify-center min-h-screen pt-32 pb-20">
+        <div class="relative z-10 text-center px-4">
+            <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight hologram-text">
+                Future Tech, Today's Commerce
+            </h1>
+            <p class="text-xl md:text-2xl text-blue-200 mb-10 max-w-3xl mx-auto">
+                Step into the next generation of digital shopping. Explore cutting-edge products and experiences.
+            </p>
+            <button id="getStartedBtn" class="glowing-button bg-blue-600 text-white font-bold py-4 px-10 rounded-full text-lg uppercase tracking-wider hover:bg-blue-700 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50">
+                Get Started
+            </button>
+        </div>
+    </section>
+
+    <!-- Animated Divider 1 -->
+    <div class="animated-divider my-16"></div>
+
+    <!-- Features Section (Placeholder) -->
+    <section class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-blue-400 mb-12">Experience Innovation</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="p-8 bg-gray-800 rounded-lg shadow-lg border border-blue-700 hover:border-blue-500 transition-all duration-300">
+                    <div class="text-blue-400 text-5xl mb-4">🚀</div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Blazing Fast Delivery</h3>
+                    <p class="text-gray-300">Quantum logistics ensure your products arrive at warp speed.</p>
+                </div>
+                <div class="p-8 bg-gray-800 rounded-lg shadow-lg border border-purple-700 hover:border-purple-500 transition-all duration-300">
+                    <div class="text-purple-400 text-5xl mb-4">✨</div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Immersive AR Shopping</h3>
+                    <p class="text-gray-300">Try before you buy with our augmented reality previews.</p>
+                </div>
+                <div class="p-8 bg-gray-800 rounded-lg shadow-lg border border-green-700 hover:border-green-500 transition-all duration-300">
+                    <div class="text-green-400 text-5xl mb-4">🔒</div>
+                    <h3 class="text-2xl font-semibold text-white mb-3">Secure Quantum Payments</h3>
+                    <p class="text-gray-300">Your transactions are protected by next-gen encryption.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Animated Divider 2 -->
+    <div class="animated-divider my-16"></div>
+
+    <!-- Call to Action Section (Placeholder) -->
+    <section class="py-20 bg-gray-950">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Explore?</h2>
+            <p class="text-xl text-gray-300 mb-10">Join the revolution and reshape your shopping experience.</p>
+            <button class="glowing-button bg-purple-600 text-white font-bold py-4 px-10 rounded-full text-lg uppercase tracking-wider hover:bg-purple-700 focus:outline-none focus:ring-4 focus:ring-purple-500 focus:ring-opacity-50">
+                Browse Catalog
+            </button>
+        </div>
+    </section>
+
+    <!-- Advertisement Modal -->
+    <div id="advertisementModal" class="advertisement-modal fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-gray-900 rounded-lg shadow-2xl p-8 max-w-2xl w-full relative border border-blue-600">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-white text-3xl font-bold">&times;</button>
+            <h3 class="text-4xl font-bold text-blue-400 mb-6 text-center">Exclusive Launch Offer!</h3>
+            <div class="text-center mb-6">
+                <p class="text-lg text-gray-200">Get <strong>20% off</strong> your first purchase with code: <span class="font-mono text-yellow-400 text-xl">FUTURE20</span></p>
+                <p class="text-sm text-gray-400 mt-2">Valid for new customers only. Expires soon!</p>
+            </div>
+            <div class="flex justify-center">
+                <button class="glowing-button bg-green-600 text-white font-bold py-3 px-8 rounded-full text-md uppercase tracking-wider hover:bg-green-700 focus:outline-none focus:ring-4 focus:ring-green-500 focus:ring-opacity-50">
+                    Claim Offer Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const getStartedBtn = document.getElementById('getStartedBtn');
+            const advertisementModal = document.getElementById('advertisementModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+
+            getStartedBtn.addEventListener('click', () => {
+                advertisementModal.classList.remove('hidden');
+                advertisementModal.classList.add('flex'); // Ensure it's visible and centered
+            });
+
+            closeModalBtn.addEventListener('click', () => {
+                advertisementModal.classList.add('hidden');
+                advertisementModal.classList.remove('flex');
+            });
+
+            // Close modal when clicking outside of it
+            advertisementModal.addEventListener('click', (event) => {
+                if (event.target === advertisementModal) {
+                    advertisementModal.classList.add('hidden');
+                    advertisementModal.classList.remove('flex');
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+{
+  "name": "Quantum Nexus Landing Page",
+  "description": "A futuristic e-commerce landing page with sci-fi UI elements, a navigation bar (Home, About, Contact, Search, Orders), a hologram-style hero, glowing buttons, and an advertisement modal showing only text.",
+  "entry": "index.html",
+  "multiPage": false,
+  "files": [
+    "index.html",
+    "metadata.json"
+  ],
+  "tailwind": {
+    "source": "play-cdn"
+  },
+  "generatedAt": "2024-07-30T12:34:56Z"
+}
